@@ -1,0 +1,23 @@
+﻿@model AirportFlights.Models.FlightsPool.Flights
+@Scripts.Render("~/bundles/jquery")
+@section Scripts{
+    <script type="text/javascript" src="~/Scripts/fillAjaxData.js"></script>
+}
+<h3> @ViewBag.Message </h3>
+
+<h4>List of all flights</h4>
+    <div>
+        @foreach (var dailyFlight in Model.allFlights)
+        {
+            <h4>@Html.Label(dailyFlight.Key) </h4>
+            <div>
+                @foreach (var flightDetails in dailyFlight.Value)
+                {
+                    @Html.Label(flightDetails.FlightNumber.ToString() + " ( " + flightDetails.ArrivalTime.ToString().Substring(0, 5) + " - " + flightDetails.DepartueTime.ToString().Substring(0, 5) + " )")
+                }
+            </div>
+
+        }
+    </div>
+    <div id="dataDiv">
+    </div>

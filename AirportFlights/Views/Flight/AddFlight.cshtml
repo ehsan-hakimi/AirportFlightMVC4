@@ -1,0 +1,56 @@
+﻿@model AirportFlights.Models.DailyFlights
+@section Scripts{
+
+}
+@{
+    ViewBag.Title = "Add New Flight";
+}
+<div ng-controller="FlightAddController">
+    <h2>AddFlight</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>DailyFlights</legend>
+
+            <div class="editor-label">
+
+                @Html.LabelFor(model => model.ArrivalTime)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.ArrivalTime)
+                @Html.ValidationMessageFor(model => model.ArrivalTime)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.DepartueTime)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.DepartueTime)
+                @Html.ValidationMessageFor(model => model.DepartueTime)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.FlightNumber)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.FlightNumber)
+                @Html.ValidationMessageFor(model => model.FlightNumber)
+            </div>
+
+            @Html.DropDownListFor(model => model.GateNumber, Model.listGates, "-- Select Gate --")
+
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+        </fieldset>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+</div>

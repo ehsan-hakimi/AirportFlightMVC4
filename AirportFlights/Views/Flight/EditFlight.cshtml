@@ -1,0 +1,60 @@
+﻿@model AirportFlights.Models.DailyFlights
+
+@{
+    ViewBag.Title = "Edit Flight";
+}
+
+<h2>EditFlight</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>DailyFlights</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ArrivalTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ArrivalTime)
+            @Html.ValidationMessageFor(model => model.ArrivalTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DepartueTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DepartueTime)
+            @Html.ValidationMessageFor(model => model.DepartueTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FlightNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FlightNumber)
+            @Html.ValidationMessageFor(model => model.FlightNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.GateNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.GateNumber)
+            @Html.ValidationMessageFor(model => model.GateNumber)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,31 @@
+﻿@section Styles {
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <style type="text/css">
+        .list-group-item-warning {
+            line-height:2em;
+        }
+    </style>
+    }
+<hgroup class="title">
+    <h1>Assumption</h1>
+</hgroup>
+
+<div>
+    <ul class="list-group">
+        <li class="list-group-item-warning"><b>Flight numbers should be unique </b>in all gates. Gate manager should manually consider that.</li>
+        <li class="list-group-item-warning">Gate manager should enter <b>time in format HH:MM:SS.</b> Departue should be greater than arrival time. I haven't had time to add validation and unit tests</li>
+        <li class="list-group-item-warning">I have used <b>ASP.Net MVC on add</b> a new flight and for initiation of lists. For the reset of operations, I have used <b>Web API + AngularJS</b></li>
+        <li class="list-group-item-warning">Gate will initiate <b>by pressing a link called 'Fill by sample data'</b>. after that user will be able to add more new flights.</li>
+        <li class="list-group-item-warning">In update a flight, <b>if there is no free time available in current gate</b>, it will assign that flight to another gate automatically.</li>
+        <li class="list-group-item-warning">Backend code <b>(GateDAO)</b> has been designed to support <b>as many gate as you want</b>, although UI need some updates to support multiple gates</li>
+        <li class="list-group-item-warning">
+            The algorithm has design to have <b>maximum speed</b> for having best performance. So I consider 2 lists (one for free times and second one for daily flights) per each gate.
+            This will allow me fastest speed once we are going to add or edit a flight in case most of times are already booked. (rather than algorythm which have one list per gate)
+        </li>
+        <li class="list-group-item-warning"><b>For editing and canceling a flight</b>, just click on that specific flight number which is showing in calendar </li>
+        <li class="list-group-item-warning">I have used a class called <b>'FlightPool'</b> for Data Access Layer to initialize the objects.</li>
+        <li class="list-group-item-warning"><b>A javascript event calendar</b> used for showing calendar. Here is the source https://fullcalendar.io </li>
+        <li class="list-group-item-warning">I have tested the web application and  work fine with Chrome, Firefox and IE.</li>
+        <li class="list-group-item-warning">If you found any issue please feel free to report it to Ehsan Hakimi at hakimi.ehsan@gmail.com</li>
+    </ul>
+</div> 

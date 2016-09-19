@@ -1,0 +1,135 @@
+﻿@section Styles {
+    <link href="@Url.Content("~/Content/themes/base/minified/fullcalendar.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/base/minified/scheduler.min.css")" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <style type="text/css">
+        .fc-event{font-size:0.7em;}
+        .fc-ltr .fc-timeline-event .fc-title {
+            padding-left:7px;
+            margin-left:-7px;
+        }
+    </style>
+}
+@section Scripts{
+    
+    <script type="text/javascript" src="~/Scripts/moment.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/fullCalendar.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/scheduler.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/myCalendar.js"></script>
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title</h1>
+
+            </hgroup>                        
+        </div>
+    </section>
+}
+
+    <div ng-controller="FlightListController as vm" >
+        <form name="flightForm" novalidate>
+            <!-- ** BEGIN LIST AREA ** -->
+            <div ng-show="vm.uiState.isListAreaVisible">
+
+                <div class="form-group" ng-show="'@(ViewBag.isListFull)'">
+                    <label for="gateSelector" class="col-sm-2">Select gate:</label>
+                    <div class="col-sm-4">
+                        <select id="gateSelector"
+                                class="form-control"
+                                ng-model="vm.selectorGate"
+                                ng-options="item.GateName for item in vm.gates track by item.GateNumber"></select>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="button" id="btnGetData" value="Show flights" class="btn btn-sm btn-default" />
+                    </div>
+                    <div class="col-sm-4">@Html.ActionLink("Add a new flight", "AddFlight", "Flight")</div>
+                </div>
+                <div class="form-group" ng-hide="'@(ViewBag.isListFull)'">
+                    @Html.ActionLink("Fill by sample data", "FillSampleDate", "Flight")
+                </div>
+
+                <div id='calendar' style="float:left"></div>
+            </div>
+            <!-- ** END LIST AREA ** -->
+            <!-- ** BEGIN DETAIL AREA ** -->
+            <div ng-show="vm.uiState.isDetailAreaVisible" class="panel panel-primary">
+                <div class="panel-heading">
+                    <h1 class="panel-title">
+                        Flight Information
+                    </h1>
+                </div>
+                <div class="panel-body">
+                    <!-- ** BEGIN INPUT AREA -->
+                    <div class="form-group">
+                        <label for="flightNumber">Flight Number</label>
+                        <input type="text" class="form-control"
+                               id="flightNumber"
+                               name="flightNumber"
+                               required
+                               ng-readonly="true"
+                               ng-model="vm.flight.FlightNumber" />
+                    </div>
+                    <div class="form-group">
+                        <label for="arrivalTime">
+                            Arrival Time
+                        </label>
+                        <input id="arrivalTime"
+                               name="arrivalTime"
+                               required
+                               type="text" placeholder="HH:mm:ss" 
+                               class="form-control"
+                               ng-model="vm.flight.ArrivalTime" />
+                    </div>
+                    <div class="form-group">
+                        <label for="departueTime">
+                            Departue Time
+                        </label>
+                        <input id="departueTime"
+                               name="departueTime"
+                               required
+                               type="text"
+                               class="form-control"
+                               ng-model="vm.flight.DepartueTime" />
+                    </div>
+                    <div class="form-group">
+                        <label for="gateNumber">Gate Number</label>
+                        <select id="gateNumber"
+                                class="form-control dropdown-width"
+                                ng-disabled="true"
+                                ng-model="vm.selectedGate"
+                                ng-options="item.GateName for item in vm.gates track by item.GateNumber"></select>
+                    </div>
+
+                    <!-- ** END INPUT AREA -->
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <button class="btn btn-sm btn-primary"
+                                    type="button"
+                                    ng-click="vm.saveClick(flightForm)">
+                                <i class="glyphicon glyphicon-floppy-disk"></i>
+                                &nbsp;Save
+                            </button>
+                            <button class="btn btn-sm btn-primary"
+                                    type="button"
+                                    ng-click="vm.cancelClick(flightForm)">
+                                <i class="glyphicon glyphicon-chevron-left"></i>
+                                &nbsp;back
+                            </button>
+                            <button class="btn btn-sm btn-primary"
+                                    type="button"
+                                    ng-click="vm.deleteClick(vm.flight.FlightNumber)">
+                                <i class="glyphicon glyphicon-remove-circle"></i>
+                                &nbsp;Cancel flight
+                            </button>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ** END DETAIL AREA ** -->
+        </form>
+
+</div>   
